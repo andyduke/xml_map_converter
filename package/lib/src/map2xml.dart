@@ -26,13 +26,17 @@ class Map2Xml {
   });
 
   String transform() {
-    var xml = StringBuffer(xmlPrefix);
+    var xml = StringBuffer();
+
+    if (xmlPrefix.isNotEmpty) {
+      xml.write(xmlPrefix);
+    }
 
     for (var entry in map.entries) {
       xml.write(_toXml(entry.value, entry.key, ''));
     }
 
-    return xml.toString();
+    return xml.toString().trim();
   }
 
   String _toXml(dynamic data, String name, String indentStr) {
