@@ -44,7 +44,8 @@ void main(List<String> arguments) async {
     case 'xml2json':
       final converter1 = Xml2Map(data);
       final result = await converter1.transform();
-      final encoder = JsonEncoder.withIndent(' ' * 2, (dynamic object) => object.toString());
+      final encoder = JsonEncoder.withIndent(
+          ' ' * 2, (dynamic object) => object.toString());
       final json = encoder.convert(result);
       print(json);
       break;

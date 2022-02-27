@@ -56,7 +56,9 @@ class Xml2Map {
       parentInfo = _nodeStack.isNotEmpty ? _nodeStack.removeLast() : null;
       if (parentInfo != null) {
         dynamic value;
-        if (_node is Map && _node!.keys.length == 1 && _node!.keys.first == textNode) {
+        if (_node is Map &&
+            _node!.keys.length == 1 &&
+            _node!.keys.first == textNode) {
           // Unpack single text node
           value = _node![textNode];
         } else {

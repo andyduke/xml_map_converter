@@ -73,9 +73,14 @@ class Map2Xml {
           if (node.key == textNode) {
             xml += node.value;
           } else if (node.key == cdataNode) {
-            xml += eol + indentStr + _newIndent + '<![CDATA[${node.value}]]>' + eol;
+            xml += eol +
+                indentStr +
+                _newIndent +
+                '<![CDATA[${node.value}]]>' +
+                eol;
           } else if (!node.key.startsWith(attrPrefix)) {
-            final children = _toXml(node.value, node.key, indentStr + _newIndent);
+            final children =
+                _toXml(node.value, node.key, indentStr + _newIndent);
             if (children.isNotEmpty) {
               hasChildNodes = true;
             }
