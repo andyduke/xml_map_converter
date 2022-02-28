@@ -1,41 +1,58 @@
 import 'package:xmlstream/xmlstream.dart';
 import 'package:xml_map_converter/src/types.dart';
+import 'package:xml_map_converter/src/consts.dart';
 
-class NodeInfo {
+class _NodeInfo {
   final String? name;
   final dynamic value;
 
-  NodeInfo(this.name, this.value);
+  _NodeInfo(this.name, this.value);
 }
 
+/// Class for converting XML to Dart Maps
+///
+/// Tag names are converted to keys in the Map, tag values and attributes are converted to values in the Map.
+/// XML attributes are turned into keys prefixed with `@`.
+/// The text content of the xml node is turned into a value in the Map, but if the Map already has attributes or nested values, then the text content is written to the `#text` key.
+/// The CDATA content of the xml node is written to the `#cdata` key.
+/// Multiple tags with the same name are combined into a list.
+///
+/// See also: https://www.xml.com/pub/a/2006/05/31/converting-between-xml-and-json.html
 class Xml2Map {
-  late final XmlStreamer xmlStreamer;
+  late final XmlStreamer _xmlStreamer;
 
+  /// XML attribute prefix in JSON
   final String attrPrefix;
+
+  /// Text property name in JSON
   final String textNode;
+
+  /// CDATA property name in JSON
   final String cdataNode;
 
   DataMap? _node;
   String? _nodeName;
 
-  final List<NodeInfo> _nodeStack = [];
+  final List<_NodeInfo> _nodeStack = [];
 
+  /// Creates a XML to Dart Maps conversion object
   Xml2Map(
     String xml, {
     this.attrPrefix = defaultAttrPrefix,
     this.textNode = defaultTextNode,
     this.cdataNode = defaultCdataNode,
   }) {
-    xmlStreamer = XmlStreamer(xml);
+    _xmlStreamer = XmlStreamer(xml);
   }
 
+  /// Converts XML to Dart Maps
   Future<DataMap?> transform() async {
-    await xmlStreamer.read().listen(_onData).asFuture();
+    await _xmlStreamer.read().listen(_onData).asFuture();
     return _node;
   }
 
   void _pushNode(String name) {
-    _nodeStack.add(NodeInfo(_nodeName, _node));
+    _nodeStack.add(_NodeInfo(_nodeName, _node));
 
     final newNodeElement = <String, dynamic>{};
     _node = newNodeElement;
@@ -51,7 +68,7 @@ class Xml2Map {
   }
 
   void _popNode() {
-    NodeInfo? parentInfo;
+    _NodeInfo? parentInfo;
     if (_node != null && _nodeName != null) {
       parentInfo = _nodeStack.isNotEmpty ? _nodeStack.removeLast() : null;
       if (parentInfo != null) {

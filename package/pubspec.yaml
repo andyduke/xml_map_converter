@@ -1,6 +1,6 @@
 name: xml_map_converter
-description: XML to Dart map converter and vice versa
-version: 1.0.0
+description: XML to Dart map converter and vice versa following Stefan Goessner convention
+version: 1.0.0+1
 homepage: https://github.com/andyduke/xml_map_converter/tree/master/package
 repository: https://github.com/andyduke/xml_map_converter
 issues: https://github.com/andyduke/xml_map_converter/issues
