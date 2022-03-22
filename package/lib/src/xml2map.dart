@@ -11,11 +11,11 @@ class _NodeInfo {
 
 /// Class for converting XML to Dart Maps
 ///
-/// Tag names are converted to keys in the Map, tag values and attributes are converted to values in the Map.
-/// XML attributes are turned into keys prefixed with `@`.
-/// The text content of the xml node is turned into a value in the Map, but if the Map already has attributes or nested values, then the text content is written to the `#text` key.
-/// The CDATA content of the xml node is written to the `#cdata` key.
-/// Multiple tags with the same name are combined into a list.
+/// - Tag names are converted to keys in the Map, tag values and attributes are converted to values in the Map.
+/// - XML attributes are turned into keys prefixed with `@`.
+/// - The text content of the xml node is turned into a value in the Map, but if the Map already has attributes or nested values, then the text content is written to the `#text` key.
+/// - The CDATA content of the xml node is written to the `#cdata` key.
+/// - Multiple tags with the same name are combined into a list.
 ///
 /// See also: https://www.xml.com/pub/a/2006/05/31/converting-between-xml-and-json.html
 class Xml2Map {

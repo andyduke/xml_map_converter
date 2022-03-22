@@ -5,10 +5,10 @@ import 'package:xml_map_converter/src/consts.dart';
 ///
 /// Credits to Stefan Goessner/2006 (http://goessner.net/)
 ///
-/// Keys in the Map are converted to child tag names, keys prefixed with @ are converted to tag attributes.
-/// The `#text` keys are converted to the text values of the tags.
-/// The `#cdata` keys are converted to text values of CDATA tags.
-/// Lists are converted to multiple tags with the same name.
+/// - Keys in the Map are converted to child tag names, keys prefixed with @ are converted to tag attributes.
+/// - The `#text` keys are converted to the text values of the tags.
+/// - The `#cdata` keys are converted to text values of CDATA tags.
+/// - Lists are converted to multiple tags with the same name.
 ///
 /// See also: https://www.xml.com/pub/a/2006/05/31/converting-between-xml-and-json.html
 class Map2Xml {
